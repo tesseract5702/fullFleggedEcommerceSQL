@@ -1,6 +1,6 @@
 //const getProdLimit = require("../services/getProdLimit");
 const getProd = require("../sqlservices/getProd");
-const getProdSort = require("../services/getProdSort");
+//const getProdSort = require("../services/getProdSort");
 const addProd = require("../sqlservices/addProd");
 const multer  = require('multer')
 var storage = multer.diskStorage({

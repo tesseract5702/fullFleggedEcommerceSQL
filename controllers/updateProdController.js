@@ -1,4 +1,4 @@
-const productModel = require("../schema/product");
+//const productModel = require("../schema/product");
 const updateProd = require("../sqlservices/updateProd");
 
 async function updateProduct_controller(req,res)

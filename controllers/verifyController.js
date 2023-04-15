@@ -1,5 +1,5 @@
-const { model } = require("mongoose");
-const userModel = require("../schema/user");
+//const { model } = require("mongoose");
+//const userModel = require("../schema/user");
 const updateVerification = require("../sqlservices/updateVerification");
 const getUserByMailToken = require("../sqlservices/getUserByMailToken");
 const getUserUsingSession = require("../sqlservices/getUserUsingSession");

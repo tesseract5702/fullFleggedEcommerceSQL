@@ -1,4 +1,4 @@
-const userModel = require("../schema/user");
+//const userModel = require("../schema/user");
 const updatePass = require("../sqlservices/updatePass");
 
 async function changePass_controller(req,res)

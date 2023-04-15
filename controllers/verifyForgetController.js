@@ -1,4 +1,4 @@
-const userModel = require("../schema/user");
+//const userModel = require("../schema/user");
 const getUserByMailToken = require("../sqlservices/getUserByMailToken");
 
 async function verify_forget_controller(req,res)
