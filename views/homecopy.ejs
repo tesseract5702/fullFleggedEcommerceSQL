@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  </head>
+    <title>Home</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            /* background-image: linear-gradient(to bottom right,rgb(12, 145, 127),rgb(0, 255, 179)); */
+            background-image: linear-gradient(to bottom right,rgb(15, 102, 216),rgb(4, 227, 235));
+        }
+        .container{
+            padding-top: 100px;
+        }
+        .loginBox{
+            height: 400px;
+            width: 300px;
+            padding: 10px;
+            padding-top: 60px;
+            background-color: rgba(255, 255, 255, 0.692);
+            border-radius: 5px;
+            border-style: solid;
+            border-color: black;
+        }
+        .userName
+        {
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+        #cards
+        {
+            justify-content: center;
+            padding: 5px;
+        }
+        .card-body
+        {
+            padding: 5px;
+            background-color: azure;
+        }
+        .submitBtn
+        {
+            margin: 100px 5px 5px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <%- include("partials/header", {username: username}) %>
+    </div>
+    
+    
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-5" id="cards">
+            <% size = parseInt(size)%>
+            <% for(let i=0; i<size ;i++){%>
+                <div class="productBox container" style="padding: 10px;">
+                    <div class="card-body">
+                        <div><img class="img-fluid" src= <%=products[i].image %> style="padding:5px; height: 150px; width:104px; " alt="<%=products[i].name %>"></img></div>
+                        <h5 class="card-title" style="padding:5px;"><%=products[i].name%></h5>
+                        <p style="display: none;"><%=products[i].details%></p>
+                        <p style="display: none;"><%=products[i].price%></p>
+                        <div class="container-fluid">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#<%=products[i].id %>">
+                                View Details
+                            </button>
+                            <a href="/addToCart/<%=products[i].id%>">
+                                <button type="button" class="btn btn-dark">
+                                    Add to Cart
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="<%= products[i].id %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel"><%=products[i].name%></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img class="img-fluid" id="modalImg" src= <%=products[i].image %> style="padding:5px; height: 300px; width:400px;" alt="<%products[i].name %>"></img>
+                                <div class="prodDet" id="modalDetail">
+                                    <p><%=products[i].details%></p>
+                                </div>
+                                <div class="prodPrice d-flex">
+                                    <h5>Price:&nbsp;</h5>
+                                    <h5 id="modalPrice"><%=products[i].price%></h5>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div>
+        <a href="/loadmore/<%=size%>">
+            <div class="signUplink d-grid gap-2">
+                <button class="btn btn-primary">Show more</button>
+            </div>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Sign Up</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background-image: linear-gradient(to bottom right,rgb(12, 145, 127),rgb(0, 255, 179));
+        }
+        .container{
+            height: 100%;
+            width: 100%;
+        }
+        .loginBox{
+            height: 490px;
+            width: 390px;
+            padding: 10px;
+            padding-top: 10px;
+            background-color: rgba(255, 255, 255, 0.692);
+            border-radius: 5px;
+            border-style: solid;
+            border-color: black;
+        }
+        .role
+        {
+            padding: 15px 30px 10px 30px;
+        }
+        .userName
+        {
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+        .submitBtn
+        {
+            margin: 10px 5px 10px 5px;
+        }
+        .txtpara{
+          text-align : center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="loginBox container">
+            <form method="POST" action="/addUser">
+                <div class="userName">
+                    <div><h4>Full name:</h4></div>
+                    <input type="text" class="form-control" placeholder="Full Name" name="username" aria-label="username" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="mailid">
+                    <div><h4>Email ID:</h4></div>
+                    <input type="email" class="form-control" placeholder="abc@gmail.com" name="mail" aria-label="mail" aria-describedby="basic-addon1" required>
+                </div>
+                <% if(err) { %>
+                    <div style="color: red;"><%= err %></div>
+                <% }%>
+                <div class="password">
+                    <div><h4>Password:</h4></div>
+                    <input type="password" class="form-control" placeholder="Password" name="password" aria-label="password" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="role d-flex justify-content-between">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1" value="user" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          <h5>User</h5>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" value="seller">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          <h5>Seller</h5>
+                        </label>
+                      </div>
+                </div>
+                <div class="submitBtn d-grid gap-2">
+                    <input type="submit" class="btn btn-primary" value="Signup">
+                </div>
+                <p class="txtpara">Already have an account?</p>
+            </form>
+            <a href="/login">
+                <div class="signUplink d-grid gap-2">
+                    <button class="btn btn-primary">Login</button>
+                </div>
+            </a>
+            <% if(errNF) { %>
+                <div style="align-items: center;"><%=errNF%></div>
+            <% } %>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Your Cart</title>
+    <style>
+         *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            /* background-image: linear-gradient(to bottom right,rgb(12, 145, 127),rgb(0, 255, 179)); */
+            background-image: linear-gradient(to bottom right,rgb(15, 102, 216),rgb(4, 227, 235));
+        }
+        .container{
+            padding-top: 100px;
+        }
+        #cards
+        {
+            justify-content: center;
+            padding: 5px;
+        }
+        .addressForm
+        {
+            /* height: 450px; */
+            width: 350px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.425);
+            border-radius: 5px;
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+        .paymentMethod
+        {
+            padding: 15px 30px 10px 30px;
+        }
+        .inputBox
+        {
+            padding: 10px;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button
+        {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .card-body
+        {
+            padding: 5px;
+            background-color: azure;
+        }
+        .dltbtn
+        {
+            margin-bottom: 5px;
+        }
+        .backbtn
+        {
+            margin: 5px;
+        }
+        .submitBtn
+        {
+            padding: 5px;
+        }
+        .submitBtnOnline
+        {
+            padding: 5px;
+        }
+        .proceedbtn
+        {
+            margin: 5px;
+        }
+        .buttons
+        {
+            padding: 20px;
+        }
+        @media only screen and (max-width: 800px) and (min-width: 768px)
+        {
+            .row-cols-md-4>* {
+                flex: 0 0 auto;
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <%- include("partials/header", {username: username}) %>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-5" id="cards">
+
+            <% if(cartItems.length === 0){ %>
+                <div class="container">
+                    <h4>OOPS!There is nothing in your cart :(</h4>
+                </div>
+            <% } %>
+            <% if(cartItems.length > 0) {%>
+                <% for(let i=0; i<cartItems.length ;i++){%>
+                    
+                    <div class="productBox container" style="padding: 10px;">
+                        <div class="card-body">
+                            <div><img class="img-fluid" src= <%=cartItems[i].image %> style="padding:5px; height: 150px; width:104px; " alt="<%=cartItems[i].name %>"></img></div>
+                            <% if(cartItems[i].inStock){ %>
+                                <h5 class="card-title" style="padding:5px;"><%=cartItems[i].name%></h5>
+                                <h5>Quantity:   <%=cartItems[i].cartQuantity%> </h5>
+                                <h5>Price:&nbsp;$<%=cartItems[i].price%></h5>
+                            <% } %>
+                            <% if(cartItems[i].inStock === false){ %>
+                                <h5 class="card-title" style="padding:5px; color: rgb(253, 38, 31);">Out of Stock</h5>
+                                <h5>Sorry this item is currently out of stock.So it won't be delivered.</h5>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                <% } %>
+                
+            <% } %>
+        </div>
+    </div> 
+    <div class="total" style="text-align: center;">
+        <h4>Total Amount to be Paid:&nbsp;$<%=total%></h4>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="addressForm container">
+            <form action="/placeOrderCOD" method="post"> 
+                <div><h5>Home Number*</h5></div>
+                <div class="inputBox">
+                    <input type="text" id="homeNo" class="form-control" placeholder="H.NO." name="houseNumber"  aria-describedby="basic-addon1" required>
+                </div>
+                <div><h5>Landmark*</h5></div>
+                <div class="inputBox">
+                    <input type="text" id="landmark" class="form-control" placeholder="Landmark" name="landmark"  aria-describedby="basic-addon1" required>
+                </div>
+                <div><h5>Street*</h5></div>
+                <div class="inputBox">
+                    <input type="text" id="street" class="form-control" placeholder="Street" name="street"  aria-describedby="basic-addon1" required>
+                </div>
+                <div><h5>City*</h5></div>
+                <div class="inputBox">
+                    <input type="text" id="city" class="form-control" placeholder="City" name="city"  aria-describedby="basic-addon1" required>
+                </div>
+                <div><h5>State*</h5></div>
+                <div class="inputBox">
+                    <input type="text" id="state" class="form-control" placeholder="State" name="state"  aria-describedby="basic-addon1" required>
+                </div>
+                <div><h5>Pin Code*</h5></div>
+                <div class="inputBox">
+                    <input type="n" id="pinCode" class="form-control" placeholder="Pin Code" name="pincode"  aria-describedby="basic-addon1" required>
+                </div>
+                <div><h5>Phone Number*</h5></div>
+                <div class="inputBox">
+                    <input type="n" id="phNo" class="form-control" placeholder="Phone" name="phone"  aria-describedby="basic-addon1" required>
+                </div>
+                <div class="paymentMethod d-flex justify-content-between">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1" value="cod" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          <h5>COD</h5>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" value="online">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          <h5>Online</h5>
+                        </label>
+                      </div>
+                </div>
+                <div class="submitBtn d-grid gap-2" id="submitAddressForm">
+                    <button type="submit" class="btn btn-warning">COD</button>
+                </div>   
+            </form>
+            <div class="submitBtnOnline d-grid gap-2" id="submitAddressForm">
+                <button type="submit" class="btn btn-success" id="rzp-button1">Pay Online</button>
+            </div>
+        </div>
+    </div>
+    <div class="buttons container-fluid d-flex justify-content-center">
+        <a href="/openCart">
+            <button type="button" class="btn btn-dark backbtn">Back</button>
+        </a>
+        <!-- <a href="#">
+            <button type="button" class="btn btn-success proceedBtn">Proceed</button>
+        </a> -->
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script>
+
+        document.getElementById('rzp-button1').onclick = async function(e){
+            e.preventDefault();
+            let homeNo = document.getElementById("homeNo");
+            let landmark = document.getElementById("landmark");
+            let street = document.getElementById("street");
+            let city = document.getElementById("city");
+            let state = document.getElementById("state");
+            let pinCode = document.getElementById("pinCode");
+            let phNo = document.getElementById("phNo");
+            let flexRadioDefault2 = document.getElementById("flexRadioDefault2");
+            let flexRadioDefault1 = document.getElementById("flexRadioDefault1");
+
+            if(homeNo.value.length===0 || landmark.value.length === 0 || street.value.length === 0 || city.value.length === 0 || state.value.length === 0 || pinCode.value.length === 0 || phNo.value.length === 0)
+            {
+                return alert("Please fill all the fields.");
+            }
+            else{
+                let addressData ={
+                        houseNumber:homeNo.value,
+                        landmark:landmark.value,
+                        street:street.value,
+                        city:city.value,
+                        state:state.value,
+                        pincode:pinCode.value,
+                        phone:phNo.value,
+                        radio:"online",
+                    }
+                    console.log(addressData);
+                let response = await fetch("/placeorder",{
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json"
+                    },
+                    body:JSON.stringify(addressData)
+                })
+
+                let orderData = await response.json();
+                console.log(orderData);
+                var options = {
+                    "key": "rzp_test_WU6ExvPW3260n1", // Enter the Key ID generated from the Dashboard
+                    "amount": orderData.order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "ComeShop", //your business name
+                    "description": "Order Payment",
+                    "order_id": orderData.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                    "handler": async function (resp){
+                        alert(resp.razorpay_payment_id);
+                        alert(resp.razorpay_order_id);
+                        alert(resp.razorpay_signature);
+                        let razorpayObj = 
+                        {
+                            razorpay_payment_id:resp.razorpay_payment_id,
+                            razorpay_order_id:resp.razorpay_order_id,
+                            razorpay_signature:resp.razorpay_signature
+                        }
+                        const response = await fetch("/api/payment/verify",{
+                            method:"post",
+                            headers:{
+                                "Content-Type":"application/json"
+                            },
+                            body:JSON.stringify(razorpayObj)
+                        })
+                        let verification = await response.json();
+                        console.log(verification);
+                        if(verification.signatureIsValid)
+                        {
+                            let placingOrder = await fetch("/placeOrderOnline",{
+                                method:"POST",
+                                headers:{
+                                    "Content-Type":"application/json"
+                                },
+                                body:JSON.stringify(addressData)
+                            })
+                            let stats = await placingOrder.json();
+                            if(stats.status === "success")
+                            {
+                                window.location.replace("/orders");
+                            }
+                            else{
+                                alert("Order has been failed.");
+                                window.location.replace("/");
+                            }
+
+                        }
+                        else
+                        {
+                            alert("Payment Signature does not mathced");
+                            window.location.replace("/openCart");
+                        }
+                    },
+                    // "prefill": {
+                    //     "name": "Gaurav Kumar", //your customer's name
+                    //     "email": "gaurav.kumar@example.com",
+                    //     "contact": "9000090000"
+                    // },
+                    // "notes": {
+                    //     "address": "Razorpay Corporate Office"
+                    // },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                let rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response){
+                    // alert(response.error.code);
+                    // alert(response.error.description);
+                    // alert(response.error.source);
+                    // alert(response.error.step);
+                    // alert(response.error.reason);
+                    // alert(response.error.metadata.order_id);
+                    // alert(response.error.metadata.payment_id);
+                    alert("Payment Failed");
+                    window.location.replace("/");
+                });
+                rzp1.open();
+            }
+        }
+
+
+
+
+       
+    // var orderId ;
+    // $(document).ready(function(){
+    //     var settings = {
+    // "url": "/create/orderId",
+    // "method": "POST",
+    // "timeout": 0,
+    // "headers": {
+    //     "Content-Type": "application/json"
+    // },
+    // "data": JSON.stringify({
+    //     "amount": "50000"
+    // }),
+    // };
+
+    //creates new orderId everytime
+    // $.ajax(settings).done(function (response) {
+
+    // orderId=response.orderId;
+    // console.log(orderId);
+    // $("button").show();
+    // });
+    // });
+
+
+        // async function proceed(e)
+        // {
+        //     let homeNo = document.getElementById("homeNo");
+        //     let landmark = document.getElementById("landmark");
+        //     let street = document.getElementById("street");
+        //     let city = document.getElementById("city");
+        //     let state = document.getElementById("state");
+        //     let pinCode = document.getElementById("pinCode");
+        //     let phNo = document.getElementById("phNo");
+        //     let flexRadioDefault2 = document.getElementById("flexRadioDefault2");
+        //     let flexRadioDefault1 = document.getElementById("flexRadioDefault1");
+
+        //     if(homeNo==="" || landmark === "" || street === "" || city === "" || state === "" || pinCode === "" || phNo === "")
+        //     {
+        //         alert("Please fill all the fields.");
+        //     }
+        //     else{
+
+        //         if(flexRadioDefault1.checked)
+        //         {
+        //             let addressData ={
+        //                 homeNo:homeNo,
+        //                 landmark:landmark,
+        //                 street:street,
+        //                 city:city,
+        //                 state:state,
+        //                 pinCode:pinCode,
+        //                 phNo:phNo,
+        //                 paymentThrough:flexRadioDefault1.value,
+        //             }
+        //             const response = await fetch("/placeOrderCOD",
+        //             {
+        //                 method:"POST",
+        //                 headers:{
+        //                     "Content-Type":"application/json"
+        //                 },
+        //                 body:JSON.stringify(addressData)
+        //             })
+        //             .then(res=>res.json())
+        //             .then(data=>{products=JSON.parse(data)})
+        //             .catch(err=>{console.log(err)})
+        //         }
+        //     }
+
+        //}
+
+    </script>
+    
+</body>
+</html>

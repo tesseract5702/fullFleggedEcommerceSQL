@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Add Product</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+        body{
+            background-image: linear-gradient(to bottom right,rgb(15, 102, 216),rgb(4, 227, 235));
+        }
+        .container{
+            height: 100%;
+            width: 100%;
+        }
+        .loginBox{
+            height: 450px;
+            width: 350px;
+            padding: 10px;
+            padding-top: 10px;
+            background-color: rgba(255, 255, 255, 0.692);
+            border-radius: 5px;
+            border-style: solid;
+            border-color: black;
+        }
+        .prodName
+        {
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+        .submitBtn
+        {
+            margin: 10px 5px 10px 5px;
+        }
+        .txtpara{
+          text-align : center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <%- include("partials/headerAdmin", {username: username}) %>
+    </div>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="loginBox container">
+            <form method="POST" action="/<%=role%>/addProduct" enctype="multipart/form-data">
+                <div class="prodName">
+                    <div><h4>Product Name:</h4></div>
+                    <input type="text" class="form-control" placeholder="Product Name" name="productname" aria-label="productname" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="prodDetails">
+                    <div><h4>Product Details:</h4></div>
+                    <input type="text" class="form-control" placeholder="Details" name="prodDetails" aria-label="prodDetails" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="prodPrice">
+                    <div><h4>Product Price:</h4></div>
+                    <input type="number" step="0.01" class="form-control" placeholder="100.00" name="prodPrice" aria-label="prodPrice" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="prodQuantity">
+                    <div><h4>Product Quantity:</h4></div>
+                    <input type="number" class="form-control" placeholder="5" name="prodQuantity" aria-label="prodQuantity" aria-describedby="basic-addon1" required>
+                </div>
+                <div class="prodImage">
+                    <div><h4>Product Image:</h4></div>
+                    <input type="file" class="form-control-file" name="prodImage" encty required>
+                </div>
+                <div class="submitBtn d-grid gap-2">
+                    <input type="submit" class="btn btn-primary" value="Add">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+</body>
+</html>
