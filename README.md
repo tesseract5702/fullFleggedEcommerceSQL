@@ -70,12 +70,12 @@ Few snapshots of the UI:
 
 ![image](https://user-images.githubusercontent.com/121314308/232250765-d9482647-215f-4a1f-ba8d-8657a3b0aaaa.png)
 
+If the seller clicks on View details in the above page he/she can see the complete order details.
+
 <h3>Updating a product details:</h3>
 
 ![image](https://user-images.githubusercontent.com/121314308/232250843-1ab21005-002d-46d5-a409-995323636dd4.png)
 
-
-If the seller clicks on View details in the above page he/she can see the complete order details.
 
 The admin page looks similar to the seller page.
 You can run the project by downloading the code and running npm install and then node main command on your terminal in the directory you saved the code.
