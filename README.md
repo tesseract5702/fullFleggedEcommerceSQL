@@ -1,7 +1,7 @@
 # fullFleggedEcommerceSQL
 <b><h1>ComeShop</h1></b>
 ComeShop is a fully flegged e-commerce website as of the modern days.
-Sellers can sell their products and user can buy their products,This website will support multiple users and sellers.
+Sellers can sell their products and user can buy the products,This website supports multiple users and sellers.
 This website has some new features like online payment gateway(Razorpay in this project) and it also supports uploadation of multiple products just by uplaoding a csv file for the ease of sellers.
 The tech stack used for this project is:
 <ul>Front End:
